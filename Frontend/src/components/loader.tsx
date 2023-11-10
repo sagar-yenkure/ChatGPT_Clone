@@ -1,5 +1,5 @@
 
-import PulseLoader from "react-spinners//PulseLoader"
+import PulseLoader from "react-spinners/PulseLoader"
  
 const Loader = () => (
     <PulseLoader color="black" size={10} />

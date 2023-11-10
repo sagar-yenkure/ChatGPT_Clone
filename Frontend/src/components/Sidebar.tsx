@@ -42,7 +42,8 @@ const Sidebar = () => {
             <img className="w-4 h-4" src={stars} alt="" />
             <button className="text-white">Upgrade</button>
           </div>
-          <div className="account flex items-center pl-5 p-2 space-x-3">
+          <div className="account flex items-center pl-5 p-2
+           space-x-3">
             <img className="w-6 h-6" src={pic} alt="" />
             <h1 className="text-white">Sagar Yenkure</h1>
             <span className="text-white pl-[4rem] text-lg">...</span>
