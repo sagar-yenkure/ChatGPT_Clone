@@ -1,11 +1,21 @@
 import exp from "../assets/svg/export.svg";
 import { useSelector } from "react-redux";
+// import { useState } from "react";
 import { BiMessageSquareEdit } from "react-icons/bi";
 import gpt from "../assets/svg/gpt.svg";
 import pic from "../assets/images/pic.jpg";
 import { BsClipboard, BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
-const Chats = () => {
+import Loader from "./Loader";
+const Chats = (props:any) => {
   const Data: any = useSelector((state: any) => state.chat_reducer.chat);
+ 
+//  const copyresponce=()=>{
+//   let copyres = Data.responce
+//   copyres.select()
+//   navigator.clipboard.writeText(copyres.value)
+//   document.getSelection().removeAllRanges();
+//  }
+ 
 
   return (
     <>
@@ -31,10 +41,10 @@ const Chats = () => {
                 <div className="responce__ w-full h-full bg-[#444654] py-6 flex justify-around">
                   <div className=" flex justify-center items-center space-x-3 px-10">
                     <img className="w-10 h-10" src={gpt} alt="" />
-                    <h1 className="text-[#ececf1] w-[20rem]">{data.responce}</h1>
+                    {props.first?<Loader/>:<h1 id="res" className="text-[#ececf1] w-[20rem]">{data.responce}</h1>}
                   </div>
                   <div className="res flex space-x-2 ">
-                    <button>
+                    <button >
                       <BsClipboard size={15} />
                     </button>
                     <button>
@@ -43,8 +53,12 @@ const Chats = () => {
                     <button>
                       <BsHandThumbsDown size={15} />
                     </button>
+                   
+
                   </div>
                 </div>
+              
+
               </div>
             );
           })}

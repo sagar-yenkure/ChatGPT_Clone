@@ -1,7 +1,7 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState: any = {
-  chat: []
+  chat:[]
 };
 
 export const chatsclice = createSlice({
