@@ -7,6 +7,7 @@ import pic from "../assets/images/pic.jpg";
 import { BsClipboard, BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 import Loader from "./Loader";
 const Chats = (props:any) => {
+  
   const Data: any = useSelector((state: any) => state.chat_reducer.chat);
  
 //  const copyresponce=()=>{
@@ -15,7 +16,6 @@ const Chats = (props:any) => {
 //   navigator.clipboard.writeText(copyres.value)
 //   document.getSelection().removeAllRanges();
 //  }
- 
 
   return (
     <>

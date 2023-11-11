@@ -39,7 +39,6 @@ const Chatpage = () => {
 
   const handlenav = () => {
     dispatch(sidenavopen(true));
-
   };
   return (
     <>
@@ -55,31 +54,31 @@ const Chatpage = () => {
         )}
         {!send ? <Features /> : <Chats first={first} />}
 
-        <div className="chat__send flex justify-end items-end w-full">
-          <form className=" w-full">
-            <div className=" relative flex items-center justify-center ">
-              <input
-                onChange={(e) => setcommand(e.target.value)}
-                className="  appearance-none bg-gray-600 border-none w-[700px] text-white p-4 outline-none rounded-xl "
-                type="text"
-                placeholder="Send a message"
-                value={command}
-              />
-              <button
-                onClick={sendcommand}
-                className="absolute right-[-5%] md:right-[25%]"
-              >
-                <RxPaperPlane />
-              </button>
-            </div>
+        <div className="chat__send flex flex-col">
+          <div className="flex justify-center rounded-xl">
 
-            <div className="flex justify-center">
-              <p className="text-xs p-1">
-                ChatGPT can make mistakes. Consider checking important
-                information.
-              </p>
-            </div>
+          <form className=" flex items-center justify-center bg-gray-600 w-fit rounded-xl  ">
+            <input
+              onChange={(e) => setcommand(e.target.value)}
+              className="  appearance-none bg-gray-600 border-none w-[320px] md:w-[700px] text-white p-4 outline-none rounded-xl "
+              type="text"
+              placeholder="Send a message"
+              value={command}
+              />
+            <button onSubmit={sendcommand} className=" scale-125 p-3 transform 
+                                        transition duration-200
+                                        active:scale-100">
+              <RxPaperPlane />
+            </button>
           </form>
+              </div>
+
+          <div className="flex justify-center">
+            <p className="text-xs p-1">
+              ChatGPT can make mistakes. Consider checking important
+              information.
+            </p>
+          </div>
         </div>
       </div>
     </>

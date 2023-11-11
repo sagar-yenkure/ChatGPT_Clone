@@ -18,7 +18,7 @@ const Sidebar = () => {
         className={
           Nav
             ? " md:flex w-[20rem] flex-col justify-between h-screen hidden bg-[#202123]  ease-in-out duration-500 "
-            : "h-screen  bg-[#202123] hidden translate-x-0 ease-in-out duration-500"
+            : "h-screen  bg-[#202123] hidden ease-in-out duration-500"
         }
       >
         <div className="first__ flex p-3 space-x-2">
