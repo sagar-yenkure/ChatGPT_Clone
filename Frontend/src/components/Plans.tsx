@@ -11,7 +11,7 @@ const Plans = () => {
   }
   return (
     <>
-      <div className="absolute z-10 right-0 md:right-[30%] bg-black container w-screen  md:w-[45%] h-fit rounded-md">
+      <div className="absolute z-10 right-0 md:top-[15%] md:right-[30%] bg-black container w-screen  md:w-[45%] h-fit rounded-md">
         <div className="head__ bg-gray-600 flex justify-between px-6 py-6">
           <h1 className="text-white font-bold text-xl">Upgrade your plan</h1>
           <button onClick={closemodal}>

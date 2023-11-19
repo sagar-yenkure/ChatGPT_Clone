@@ -1,57 +1,91 @@
-import bolt from "../assets/images/bolt.png";
-import stars from "../assets/images/stars.png";
-import lock from "../assets/svg/lock.svg";
+import { useState } from "react";
+import bolt from "../assets/svg/bolt.svg";
+import cheack from "../assets/svg/cheack.svg";
+import stars from "../assets/svg/stars.svg";
 import { modalopen } from "../redux/modal";
-import {useDispatch}from "react-redux";
+import { BiChevronLeft } from "react-icons/bi";
+import edit from "../assets/images/edit.png";
+import { useDispatch, useSelector } from "react-redux";
 
 const Version = () => {
-  const dispatch = useDispatch()
-  const openmodal=()=>{
-    dispatch(modalopen(true))
-  }
-  
+  const [hide, sethide] = useState("hidden");
+  const dispatch = useDispatch();
+
+  const openmodal = () => {
+    dispatch(modalopen(true));
+  };
+  const hideplan = () => {
+    if (hide == "hidden") {
+      sethide("visible");
+    } else if (hide == "visible") {
+      sethide("hidden");
+    }
+  };
+  const nav: boolean = useSelector((state: any) => state.modal_reducer.sidenav);
+
   return (
     <>
-      <div className=" relative versions__ w-full h-full px-2 flex items-center justify-center p-5">
-        <div className=" bg-[rgb(32,33,35)] py-1 flex px-1 space-x-2 rounded-lg">
-          <span className="gpt4__ relative group/f cursor-pointer text-white flex space-x-2 items-center py-[9px]  px-[25px] rounded-lg bg-[#40414f]">
-            <img className="w-5 h-5" src={bolt} alt="" />
-            <p className="font-bold">GPT-3.5</p>
+      <div className=" flex justify-center h-fit ">
+        {!nav ? (
+          <button className="hide___ block p-3 m-2 w-10 h-10 border rounded-md border-gray-400">
+            <img className="w-4 h-4 text-white" src={edit} alt="" />
+          </button>
+        ) : ("")}
+        
+        <div className="relative m-1 p-3 flex rounded-lg hover:bg-slate-800">
+          <button
+            onClick={hideplan}
+            className="flex justify-center items-center space-x-1"
+          >
+            <span className="text-white font-bold">ChatGPT</span>
+            <span className="text-gray-400 font-bold">3.5</span>
+            <span className="-rotate-90">
+              <BiChevronLeft size={20} color="gray" />
+            </span>
+          </button>
 
-            {/* extra info on hover for 3.5 Version */}
-
-            <div className=" absolute invisible group-hover/f:visible bg-[rgb(32,33,35)] top-[55px] left-[-5px] w-[19rem] h-fit p-5 rounded-xl ">
-              <h1 className="text-white font-bold">
-                Our fastest model,great for most everyday tasks.
-              </h1>
-              <p className="text-gray-400 text-sm mt-2">
-                Available to free and Plus users
-              </p>
+          <div
+            className={`hoverbo absolute top-[3rem] left-[1rem] md:left-0 w-[22rem] bg-[#202123] h-[13rem] ${hide} rounded-lg m-2`}
+          >
+            <div className="regular border-b flex justify-between px-5 p-4">
+              <div className="flex space-x-2">
+                <span className="blot p-1">
+                  <img src={bolt} alt="" />
+                </span>
+                <div className="text flex flex-col text-sm text-white">
+                  <p className="font-semibold">GPT-3.5</p>
+                  <p className="text-gray-400 font-semibold">
+                    Great for everyday tasks
+                  </p>
+                </div>
+              </div>
+              <div className="cheak">
+                <img src={cheack} alt="" />
+              </div>
             </div>
-          </span>
-          <span className="relative gpt4__ group/s cursor-pointer text-gray-400 items-center flex space-x-2 py-[8px]  px-[25px]">
-            <img className="w-4 h-4" src={stars} alt="stars" />
-            <p className="font-bold group-hover/s:text-white  ">GPT-4</p>
-            <img src={lock} alt="lock" />
 
-            {/* extra info on hover for 4 Version */}
-
-            <div className=" absolute invisible group-hover/s:visible bg-[rgb(32,33,35)] top-[55px] right-[-5px] w-[19rem] h-fit p-5 rounded-xl ">
-              <h1 className="text-white font-bold">
-                Our most capable model, great for tasks that require creativity
-                and advanced reasoning.
-              </h1>
-              <p className="text-gray-400 text-xs font-bold mt-3">
-                Available exclusively to Plus users
-              </p>
-              <p className="text-gray-400 text-xs font-bold mt-2">
-                GTP-4 currently has a cap of 50 messages every 3 hours.
-              </p>
-              <button onClick={openmodal} className="bg-[#ab68ff] px-14 font-bold text-white text-xs py-4 rounded-md ml-1 mt-3">
-                Upgrade to chatGPT plus
-              </button>
+            <div className="plus px-5 p-4">
+              <div className="flex space-x-2">
+                <span className="blot p-1">
+                  <img src={stars} alt="" />
+                </span>
+                <div className="text flex flex-col text-sm text-white">
+                  <p className="font-semibold">GPT-3.5</p>
+                  <p className="text-gray-400 font-semibold">
+                    Our smartest and most capable model. Includes DALL·E,
+                    browsing and more.
+                  </p>
+                  <button
+                    onClick={openmodal}
+                    className="bg-[#ab68ff] px-14 font-bold text-white text-xs py-3 rounded-md ml-1 m-2"
+                  >
+                    Upgrade to plus
+                  </button>
+                </div>
+                <div className="pan"></div>
+              </div>
             </div>
-          </span>
+          </div>
         </div>
       </div>
     </>

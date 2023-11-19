@@ -14,6 +14,7 @@ const openai = new OpenAI({
 });
 
 app.post("/api/ask", async (req, res) => {
+
   const prompt = req.body.prompt;
   try {
     if (prompt == null) {
@@ -28,7 +29,7 @@ app.post("/api/ask", async (req, res) => {
       responce:(responce.choices[0].message.content)
     });
   } catch (error) {
-    res.send(error.message);
+    res.send("server problrm :", error);
   }
 });
 app.listen(port, () => {
