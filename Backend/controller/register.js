@@ -10,14 +10,14 @@ const Register = asyncHandler(async (req, res) => {
         if (user) {
             success = false
 
-          return res.status(400).json({  success, error: `User ${email} alredy exits, Please Login`})
+          return res.status(400).json({  success, error: `User "${email}" alredy exits, Please Login`})
         }
         user = await User.create({
             email: email,
             password: password
         })
         success = true
-        res.json({ success ,user})
+        res.json({ success ,message:"user created succesfullly | please login"})
     } 
 
     catch (error) {

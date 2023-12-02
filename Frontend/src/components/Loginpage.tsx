@@ -5,14 +5,25 @@ import chat from "../assets/svg/gpt.svg";
 import microsoft from "../assets/svg/microsoft.svg";
 import google from "../assets/svg/google.svg";
 import apple from "../assets/svg/apple.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addmail } from "../redux/EmailSlice";
+
+
 const Loginpage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
 
   const handleChange = (e: any) => {
+    e.preventDefault();
     setEmail(e.target.value);
   };
+  const handlelogin=()=>{
+    dispatch(addmail(email));
+    navigate("/loginpass")
+  }
   return (
 <>
 <div className="body">
@@ -48,7 +59,7 @@ const Loginpage = () => {
                   Email
                 </label>
               </div>
-              <button className="bg-[#10a37f] md:px-28 rounded-md text-bold text-white py-2 md:py-3 p-1">
+              <button onClick={handlelogin} className="bg-[#10a37f] md:px-28 rounded-md text-bold text-white py-2 md:py-3 p-1">
                 Continue
               </button>
             </div>

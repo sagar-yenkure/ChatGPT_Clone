@@ -15,7 +15,7 @@ import Version from "./Version";
 // import cross from "../assets/svg/cross.svg";
 
 const Chatpage = () => {
-  // const [first, setfirst] = useState(false);
+  const [first, setfirst] = useState(false);
   // const [send, setsend] = useState(false);
   const host = "http://localhost:5000";
   const dispatch = useDispatch();
@@ -27,8 +27,8 @@ const Chatpage = () => {
   const sendcommand = async (e: any) => {
     e.preventDefault();
     try {
+      setfirst(true);
       dispatch(newchat(true));
-      // setfirst(true);
       const res = await fetch(`${host}/api/ask`, {
         method: "POST",
         headers: {
@@ -42,8 +42,8 @@ const Chatpage = () => {
       if (json.success) {
         dispatch(createchat({ command, data }));
         dispatch(createchatsummery(command));
+        setfirst(false);
       }
-      // setfirst(false);
     } catch (error) {
       console.log("error : ", error);
     }
@@ -90,7 +90,7 @@ const Chatpage = () => {
               )}
             </button>
           </div>
-          {send ? <Chats /> : <Features />}
+          {send ? <Chats first={first} /> : <Features />}
 
           {/* the chat send box */}
 
@@ -124,7 +124,7 @@ const Chatpage = () => {
                 information.
               </p>
 
-              <div className="w-10 h-10 absolute right-0 m-3 bottom-0">
+              <div className=" hidden md:visible w-10 h-10 absolute right-0 m-3 bottom-0">
               <CiCircleQuestion size={30} color="gray" />
               </div>
             </div>

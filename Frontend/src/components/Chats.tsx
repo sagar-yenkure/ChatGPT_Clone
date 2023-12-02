@@ -6,7 +6,7 @@ import gpt from "../assets/svg/gpt.svg";
 import pic from "../assets/images/pic.jpg";
 import { BsClipboard, BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 import Loader from "./Loader";
-const Chats = () => {
+const Chats = (props:any) => {
   const Data: any = useSelector((state: any) => state.chat_reducer.chat);
   return (
     <>
@@ -42,9 +42,14 @@ const Chats = () => {
                         </div>
                         <h1 className="text-white font-bold">ChatGPT</h1>
                       </div>
-                      {<Loader /> && (
+                      {props.first ? (
+                        <div className="ml-9">
+
+                        <Loader />
+                        </div>
+                      ) : (
                         <h1 id="res" className="text-[#ececf1] w-fit  ml-9">
-                          {data.responce}
+                          <code>{data.responce}</code>
                         </h1>
                       )}
                     </div>

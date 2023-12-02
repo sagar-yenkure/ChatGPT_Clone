@@ -5,8 +5,11 @@ import microsoft from "../assets/svg/microsoft.svg";
 import google from "../assets/svg/google.svg";
 import apple from "../assets/svg/apple.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addmail } from "../redux/EmailSlice";
 
 export const Signuppage = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
@@ -14,8 +17,11 @@ export const Signuppage = () => {
     setEmail(e.target.value);
   };
 
-  const handlesigup = () => {
+  const handlesigup = (e: any) => {
+    e.preventDefault();
+    // console.log(email);
     navigate("/signpass");
+    dispatch(addmail(email));
   };
 
   return (
@@ -36,12 +42,13 @@ export const Signuppage = () => {
             </div>
             {/* {/emial and btn  */}
             <div className="email--btn flex flex-col ">
-              <form action="signpass">
+              <form>
                 <div className=" relative mb-4">
-                  <input 
+                  <input
                     type="email"
                     value={email}
                     required
+                    // defaultValue={defualtemail}
                     onChange={handleChange}
                     className="mt-2 p-3 w-full z-10 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-200"
                   />
@@ -56,7 +63,8 @@ export const Signuppage = () => {
                   </label>
                 </div>
                 <button
-                  onSubmit={handlesigup}
+                  disabled={email.length === 0}
+                  onClick={handlesigup}
                   className="bg-[#10a37f] md:px-[9rem] rounded-md text-bold text-white py-2 md:py-4 p-1"
                 >
                   Sign up
