@@ -6,3 +6,9 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+@layer base {
+  html {
+    font-family:Sohne-Bold, Sohne-Regular, SohneMono-Bold, SohneMono-Regular;
+  }
+}

@@ -1,6 +1,6 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-const initialState: any = {
+const initialState:any = {
   chat:[]
 };
 
