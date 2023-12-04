@@ -24,7 +24,8 @@ const askprompt = asyncHandler(async (req, res) => {
         });
 
     } catch (error) {
-        return res.status(500).json({ "SERVER problem": error.message });
+         res.status(500).json(error.message);
+        console.log(error.message)
     }
 })
 

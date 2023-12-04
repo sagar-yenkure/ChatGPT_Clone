@@ -3,11 +3,13 @@ import chat from "../assets/svg/gpt.svg";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios"
-import toast, { Toaster } from "react-hot-toast";
+import{  toast, Toaster } from "react-hot-toast";
 import { login_url } from "../constants/requests.js";
+import { useNavigate } from "react-router-dom";
 
 
 const Loginpass = () => {
+  const navigate = useNavigate()
 
   const email:string = useSelector((state: any) => state.email_reducer.email);
   const [password, setpassword] = useState("");
@@ -22,6 +24,10 @@ const Loginpass = () => {
       .post(login_url, { email, password })
       .then((res) => {
         toast.success(res.data.message)
+        setTimeout(() => {
+          navigate("/Home")
+        },2000);
+        
       })
       .catch((err) => {
         toast.error(err.response.data.error)
@@ -81,10 +87,10 @@ const Loginpass = () => {
             </div>
             <div className="alredyhasaccount flex flex-col space-y-3 py-4">
               <div className=" flex justify-center">
-                <p>Already have an Account ?</p>
+                <p>dont have account?</p>
                 <button className="text-[#10a37f]">
                   {" "}
-                  <Link to="/Login">Log in</Link>
+                  <Link to="/signup">sign up</Link>
                 </button>
               </div>
             </div>
